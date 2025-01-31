@@ -206,9 +206,19 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-              I am a passionate developer with a knack for building creative and
-              efficient web solutions.
+             A passionate developer creating innovative and efficient web solutions that transform digital experiences.
             </p>
+            <button
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/Aditya Wagh Resume.pdf'; // Assumes Resume.pdf is directly in the public folder
+                link.download = 'Aditya Wagh Resume.pdf';
+                link.click();
+              }}
+              className="px-5 py-2 text-white bg-transparent border-2 border-slate-600 rounded-lg shadow-lg hover:bg-[#322e7b] transition"
+            >
+              Download Resume
+            </button>
           </div>
           <ProfileImage />
         </div>
