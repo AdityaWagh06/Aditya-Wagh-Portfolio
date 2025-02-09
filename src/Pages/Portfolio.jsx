@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import SwipeableViews from "react-swipeable-views";
-import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -165,8 +163,7 @@ function a11yProps(index) {
   };
 }
 
-export default function PortfolioTabs() {
-  const theme = useTheme();
+export default function Portfolio() {
   const [value, setValue] = useState(0);
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [showAllCertificates, setShowAllCertificates] = useState(false);
@@ -310,12 +307,8 @@ export default function PortfolioTabs() {
           </Tabs>
         </AppBar>
 
-        <SwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-          index={value}
-          onChangeIndex={setValue}
-        >
-          <TabPanel value={value} index={0} dir={theme.direction}>
+        {value === 0 && (
+          <TabPanel value={value} index={0}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
                 {displayedProjects.map((project, index) => (
@@ -344,8 +337,9 @@ export default function PortfolioTabs() {
               </div>
             )}
           </TabPanel>
-
-          <TabPanel value={value} index={1} dir={theme.direction}>
+        )}
+        {value === 1 && (
+          <TabPanel value={value} index={1}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-4">
                 {displayedCertificates.map((certificate, index) => (
@@ -368,8 +362,9 @@ export default function PortfolioTabs() {
               </div>
             )}
           </TabPanel>
-
-          <TabPanel value={value} index={2} dir={theme.direction}>
+        )}
+        {value === 2 && (
+          <TabPanel value={value} index={2}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden pb-[5%]">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-8 gap-5">
                 {techStacks.map((stack, index) => (
@@ -384,7 +379,7 @@ export default function PortfolioTabs() {
               </div>
             </div>
           </TabPanel>
-        </SwipeableViews>
+        )}
       </Box>
     </div>
   );
