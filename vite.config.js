@@ -6,13 +6,5 @@ export default defineConfig({
   base: '/Aditya-Wagh-Portfolio/',
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
-    rollupOptions: {
-      output: {
-        entryFileNames: 'assets/index.js',
-        chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash].[ext]'
-      }
-    }
-  },
+  }
 });
