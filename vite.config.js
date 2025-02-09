@@ -3,8 +3,15 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+  base: '/Aditya-Wagh-Portfolio/',
   build: {
     outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
   },
-  base: '/Aditya-Wagh-Portfolio/',
 });
