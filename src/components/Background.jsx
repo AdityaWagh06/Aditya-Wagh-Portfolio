@@ -18,17 +18,18 @@ const AnimatedBackground = () => {
             const newScroll = window.pageYOffset;
             currentScroll = newScroll;
 
-            blobRefs.current.forEach((blob, index) => {
-                const initialPos = initialPositions[index];
-                const xOffset = Math.sin(newScroll / 100 + index * 0.5) * 340;
-                const yOffset = Math.cos(newScroll / 100 + index * 0.5) * 40;
-                const x = initialPos.x + xOffset;
-                const y = initialPos.y + yOffset;
+            if (currentScroll !== newScroll) {
+                blobRefs.current.forEach((blob, index) => {
+                    const initialPos = initialPositions[index];
+                    const xOffset = Math.sin(newScroll / 100 + index * 0.5) * 340;
+                    const yOffset = Math.cos(newScroll / 100 + index * 0.5) * 40;
+                    const x = initialPos.x + xOffset;
+                    const y = initialPos.y + yOffset;
 
-                blob.style.transform = `translate(${x}px, ${y}px)`;
-                blob.style.transition = "transform 1.4s ease-out";
-            });
-
+                    blob.style.transform = `translate(${x}px, ${y}px)`;
+                    blob.style.transition = "transform 1.4s ease-out";
+                });
+            }
             requestId = requestAnimationFrame(handleScroll);
         };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, memo, useMemo } from "react";
 import { Github, Linkedin, Mail, Instagram } from "lucide-react";
 
 // TypingText Component - Handles the animated text display
@@ -94,6 +94,13 @@ const MainTitle = memo(() => (
 const Home = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const socialLinks = useMemo(() => [
+    { href: "https://github.com", icon: Github },
+    { href: "https://linkedin.com", icon: Linkedin },
+    { href: "https://instagram.com", icon: Instagram },
+    { href: "mailto:someone@example.com", icon: Mail }
+  ], []);
+
   useEffect(() => {
     setIsLoaded(true);
   }, []);
@@ -106,8 +113,6 @@ const Home = () => {
       window.scrollTo({ top: sectionTop, behavior: "smooth" });
     }
   };
-
-
 
   // Social Icon Component - customize icon sizes and hover effects here
   const SocialIcon = ({ href, icon: Icon }) => (
@@ -187,11 +192,9 @@ const Home = () => {
                   data-aos="fade-up"
                   data-aos-delay="1400"
                 >
-                  {/* Add/modify social links here */}
-                  <SocialIcon href="https://github.com" icon={Github} />
-                  <SocialIcon href="https://linkedin.com" icon={Linkedin} />
-                  <SocialIcon href="https://instagram.com" icon={Instagram} />
-                  <SocialIcon href="mailto:someone@example.com" icon={Mail} />
+                  {socialLinks.map((link, index) => (
+                    <SocialIcon key={index} {...link} />
+                  ))}
                 </div>
               </div>
             </div>
